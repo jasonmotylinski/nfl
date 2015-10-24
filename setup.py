@@ -10,4 +10,7 @@ setup(
     keywords="example documentation tutorial",
     url="http://packages.python.org/an_example_pypi_project",
     packages=['nfl'],
+    install_requires=[
+        "BeautifulSoup"
+    ],
 )

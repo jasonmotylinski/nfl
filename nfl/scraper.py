@@ -1,3 +1,4 @@
+import datetime
 import logging
 import md5
 import urllib2
@@ -8,11 +9,15 @@ logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 host = 'http://www.nfl.com'
-base_url = host + '/stats/categorystats?tabSeq=0&season=2015&seasonType=REG&experience=&Submit=Go&archive=false&conference=null&statisticCategory={0}&d-447263-p=1&qualified=false'
+base_url = host + '/stats/categorystats?tabSeq=0&season={0}&seasonType=REG&experience=&Submit=Go&archive=false&conference=null&statisticCategory={1}&d-447263-p=1&qualified=false'
 
 
 def scrape_category(category):
-    return scrape(base_url.format(category))
+    return scrape_year_category(datetime.datetime.now().year, category)
+
+
+def scrape_year_category(year, category):
+    return scrape(base_url.format(year, category))
 
 
 def scrape(url):
